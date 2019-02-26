@@ -4,13 +4,29 @@ export default class Drink {
         this.ingredients = ingredients;
     }
 
-    glassDraw() {
-        var x = 50
-        var y = 60
+    glassDraw(x = 55, y = 80) {
         if (this.glass === "tumbler") {
-            return [[x, y, x, y+40], [x, y+40, x+30, y+40], [x+30, y+40, x+30, y]]
+            return [[x, y, x, y+40], [x, y+40, x+40, y+40], [x+40, y+40, x+40, y]]
         } else if (this.glass === "cocktail") {
-            return [[5, 90, 45, 90], [25, 90, 25, 50], [25, 50, 0, 25], [25, 50, 50, 25]]
+            return this.drawCocktailGlass()
         }
     }
+
+    drawCocktailGlass(canvasHeight = 150, canvasWidth = 150) {
+        let stemHeight = 50
+        let baseWidth = 40
+        let bowlWidth = 50
+        let bowlHeight = 25
+
+        let x = canvasWidth/2 - baseWidth/2
+        let y = canvasHeight/2 + (stemHeight + bowlHeight)/2
+
+        let base = [x, y, x + baseWidth, y]
+        let stem = [x + baseWidth/2, y, x + baseWidth/2, y - stemHeight]
+        let leftRim = [x + baseWidth/2, y - stemHeight, x + baseWidth/2 - bowlWidth/2, y - stemHeight - bowlHeight]
+        let rightRim = [x + baseWidth/2, y - stemHeight, x + baseWidth/2 + bowlWidth/2, y - stemHeight - bowlHeight]
+    
+        return [base, stem, leftRim, rightRim]
+    }
+
 }
