@@ -9,22 +9,20 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      glassDraw: [],
-      ingredientsDraw: []
+      drink: null
     }
   }
 
   changeDrink(glassType, ingredients) {
     let drink = new Drink(glassType, ingredients)
-    this.setState({ glassDraw: drink.glassDraw(),
-                    ingredientsDraw: drink.ingredientsDraw()})
+    this.setState({drink: drink})
   }
 
   render() {
     return (
       <div className="App">
         Hello
-        <P5Wrapper sketch={sketch} glassDraw={this.state.glassDraw} ingredientsDraw={this.state.ingredientsDraw}/>
+        <P5Wrapper sketch={sketch} drink={this.state.drink}/>
         {drinks.map((drink) => <button onClick={this.changeDrink.bind(this, drink.glassType, drink.ingredients)}>{drink.name}</button>)}
       </div>
     );
