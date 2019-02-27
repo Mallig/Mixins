@@ -9,23 +9,23 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      glass: "",
-      glassDraw: []
+      glassDraw: [],
+      ingredientsDraw: []
     }
   }
 
-  changeGlass(glassType) {
-    this.setState({ glass: glassType,
-                    glassDraw: new Drink(glassType).glassDraw()
-                  })
+  changeDrink(glassType, ingredients) {
+    let drink = new Drink(glassType, ingredients)
+    this.setState({ glassDraw: drink.glassDraw(),
+                    ingredientsDraw: drink.ingredientsDraw()})
   }
 
   render() {
     return (
       <div className="App">
         Hello
-        <P5Wrapper sketch={sketch} glassDraw={this.state.glassDraw}/>
-        {drinks.map((drink) => <button onClick={this.changeGlass.bind(this, drink.glass)}>{drink.name}</button>)}
+        <P5Wrapper sketch={sketch} glassDraw={this.state.glassDraw} ingredientsDraw={this.state.ingredientsDraw}/>
+        {drinks.map((drink) => <button onClick={this.changeDrink.bind(this, drink.glassType, drink.ingredients)}>{drink.name}</button>)}
       </div>
     );
   }

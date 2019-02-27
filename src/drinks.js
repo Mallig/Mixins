@@ -1,18 +1,18 @@
 export const drinks = [
     {
         name: "margarita",
-        glass: "cocktail",
+        glassType: "cocktail",
         ingredients: {
-            tequila: 2.0,
+            tequila: 3.0,
             lime_juice: 1.0,
-            orange_liqeur: 1.0
+            orange_liquer: 1.0
         }
     },
     {
         name: "whiskey",
-        glass: "tumbler",
+        glassType: "tumbler",
         ingredients: {
-            whiskey: 4.0,
+            whiskey: 3.0,
             water: 1.0
         }
     }
