@@ -4,7 +4,7 @@ export const drinks = [
         glassType: "cocktail",
         ingredients: {
             vodka: 4.0,
-            vermouth: 4.0*(1/6)
+            vermouth: 1.0
         }
     },
     {

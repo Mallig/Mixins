@@ -32,10 +32,10 @@ export default class Drink {
             draw.push([
                 x +3, y -2,
                 x + this.bowlWidth -2, y-2, 
-                x + this.bowlWidth -2, y - (this.ingredients[key] * 10) -2, 
-                x +3, y - (this.ingredients[key] * 10) -2
+                x + this.bowlWidth -2, y - (this.ingredients[key] * 8) -2, 
+                x +3, y - (this.ingredients[key] * 8) -2
             ])
-            y -= this.ingredients[key]*10
+            y -= this.ingredients[key]*8
         }
 
         return draw
@@ -69,9 +69,9 @@ export default class Drink {
         return draw
     }
 
-    drawCocktailGlass(canvasHeight = 150, canvasWidth = 150) {
+    drawCocktailGlass(canvasHeight = 200, canvasWidth = 200) {
         let stemHeight = 45
-        let baseWidth = 60
+        let baseWidth = 50
         let bowlWidth = 70
         let bowlHeight = 50
 
@@ -90,7 +90,7 @@ export default class Drink {
         return [base, stem, leftRim, rightRim]
     }
 
-    drawTumbler(canvasWidth = 150, canvasHeight = 150) {
+    drawTumbler(canvasWidth = 200, canvasHeight = 200) {
         let baseWidth = 60
         let bowlHeight = 60
 
