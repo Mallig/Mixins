@@ -49,6 +49,7 @@ export default function sketch(p) {
 
     p.drawIngredients = function () {
         p.strokeWeight(1)
+        p.tint(255, 120)
         for (var i = 0; i < ingredientsDraw.length; i++) {
             if (p.mouseX > ingredientsDraw[i][6] && p.mouseX < ingredientsDraw[i][4] && Math.round(p.mouseY) === Math.round(ingredientsDraw[i][5])) {
                 p.fill('red')

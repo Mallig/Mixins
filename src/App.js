@@ -13,19 +13,12 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!this.state === prevState) {
-      console.log(this.state)
-    }
-  }
-
   changeDrink(glassType, ingredients) {
     let drink = new Drink(glassType, ingredients)
     this.setState({drink: drink})
   }
 
   render() {
-    console.log(this.state.drink)
     return (
       <div className="App">
         Hello
