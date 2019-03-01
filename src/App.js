@@ -3,7 +3,7 @@ import './App.css';
 import P5Wrapper from 'react-p5-wrapper';
 import sketch from './sketch'
 import Drink from './drink';
-import {drinks} from './drinks';
+import {Menu} from './Menu'
 
 class App extends Component {
   constructor(props) {
@@ -21,9 +21,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        Hello
         <P5Wrapper sketch={sketch} drink={this.state.drink}/>
-        {drinks.map((drink) => <button onClick={this.changeDrink.bind(this, drink.glassType, drink.ingredients)}>{drink.name}</button>)}
+        <Menu changeDrink={this.changeDrink.bind(this)}/>
       </div>
     );
   }
