@@ -1,7 +1,7 @@
+export let drink = null
 export default function sketch(p) {
     let glassDraw = []
     let ingredientsDraw = []
-    let drink = null
     let dragging = false
     let ingredient
 
@@ -60,7 +60,6 @@ export default function sketch(p) {
             if (dragging && ingredient === Object.keys(drink.ingredients)[i]) {
                 p.fill('green')
                 drink.ingredients[ingredient] += (ingredientsDraw[i][5] - p.mouseY)/8
-                ingredientsDraw = drink.ingredientsDraw()
             }
 
             p.quad(ingredientsDraw[i][0], ingredientsDraw[i][1],
@@ -69,5 +68,4 @@ export default function sketch(p) {
                    ingredientsDraw[i][6], ingredientsDraw[i][7])
         }
     }
-
 }
