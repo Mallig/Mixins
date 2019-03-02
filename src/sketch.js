@@ -4,6 +4,8 @@ export default function sketch(p) {
     let ingredientsDraw = []
     let dragging = false
     let ingredient
+    let offsetY
+    let topIngredientLevel
 
     p.setup = function () {
         p.createCanvas(200, 200)
@@ -31,6 +33,7 @@ export default function sketch(p) {
         for (var i = 0; i < ingredientsDraw.length; i++) {
             if (p.mouseX > ingredientsDraw[i][6] && p.mouseX < ingredientsDraw[i][4] && Math.round(p.mouseY) === Math.round(ingredientsDraw[i][5])) {
                 dragging = true
+                offsetY = p.mouseY - topIngredientLevel
                 ingredient = Object.keys(drink.ingredients)[i]
             }
         }
@@ -49,7 +52,7 @@ export default function sketch(p) {
 
     p.drawIngredients = function () {
         p.strokeWeight(1)
-        p.tint(255, 120)
+
         for (var i = 0; i < ingredientsDraw.length; i++) {
             if (!dragging && p.mouseX > ingredientsDraw[i][6] && p.mouseX < ingredientsDraw[i][4] && Math.round(p.mouseY) === Math.round(ingredientsDraw[i][5])) {
                 p.fill('red')
@@ -57,9 +60,12 @@ export default function sketch(p) {
                 p.fill('white')
             }
 
+            topIngredientLevel = ingredientsDraw[ingredientsDraw.length-1][7]
             if (dragging && ingredient === Object.keys(drink.ingredients)[i]) {
                 p.fill('green')
-                drink.ingredients[ingredient] += (ingredientsDraw[i][5] - p.mouseY)/8
+                if ((topIngredientLevel > drink.rimEdge[1] || p.mouseY-offsetY > drink.rimEdge[1]) && p.mouseY < ingredientsDraw[i][1]) {
+                    drink.ingredients[ingredient] += (ingredientsDraw[i][5] - p.mouseY)/8
+                }
             }
 
             p.quad(ingredientsDraw[i][0], ingredientsDraw[i][1],

@@ -18,7 +18,7 @@ class App extends Component {
 
   changeDrink(glassType, ingredients) {
     let drink = new Drink(glassType, ingredients)
-    this.setState({drink: drink})
+    this.setState({drink: drink, ingredients: drink.ingredients})
   }
 
   onMouseUp() {
