@@ -12,11 +12,13 @@ export default class Drink {
             return this.drawTumbler()
         } else if (this.glassType === "cocktail") {
             return this.drawCocktailGlass()
+        } else if (this.glassType === "highball") {
+            return this.drawTumbler(100, 40)
         }
     }
 
     ingredientsDraw() {
-        if (this.glassType === "tumbler") {
+        if (this.glassType === "tumbler" || this.glassType === "highball") {
             return this.drawTumblerIngredients()
         } else if (this.glassType === "cocktail") {
             return this.drawCocktailIngredients()
@@ -90,10 +92,7 @@ export default class Drink {
         return [base, stem, leftRim, rightRim]
     }
 
-    drawTumbler(canvasWidth = 200, canvasHeight = 200) {
-        let baseWidth = 60
-        let bowlHeight = 60
-
+    drawTumbler(bowlHeight=60, baseWidth=60, canvasWidth = 200, canvasHeight = 200) {
         let x = canvasWidth/2 - baseWidth/2
         let y = canvasHeight/2 + bowlHeight/2
 

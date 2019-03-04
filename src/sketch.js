@@ -63,8 +63,9 @@ export default function sketch(p) {
             topIngredientLevel = ingredientsDraw[ingredientsDraw.length-1][7]
             if (dragging && ingredient === Object.keys(drink.ingredients)[i]) {
                 p.fill('green')
-                if ((topIngredientLevel > drink.rimEdge[1] || p.mouseY-offsetY > drink.rimEdge[1]) && p.mouseY < ingredientsDraw[i][1]) {
+                if (topIngredientLevel > drink.rimEdge[1] && p.mouseY-offsetY > drink.rimEdge[1] && p.mouseY < ingredientsDraw[i][1]) {
                     drink.ingredients[ingredient] += (ingredientsDraw[i][5] - p.mouseY)/8
+                    topIngredientLevel = ingredientsDraw[ingredientsDraw.length-1][7]
                 }
             }
 

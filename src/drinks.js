@@ -14,5 +14,20 @@ export const drinks = [
             whiskey: 3.0,
             water: 1.0
         }
+    },
+    {
+        name: "coke zero",
+        glassType: "highball",
+        ingredients: {
+            coke_zero: 10.0
+        }
+    },
+    {
+        name: "dark and stormy",
+        glassType: "highball",
+        ingredients: {
+            rum: 2.0*2,
+            ginger_beer: 3.333*2
+        }
     }
   ]

@@ -33,10 +33,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div onMouseDown={this.updateIngredients.bind(this)} onMouseUp={this.onMouseUp.bind(this)}>
+        <div className="DrinkCanvas" onMouseDown={this.updateIngredients.bind(this)} onMouseUp={this.onMouseUp.bind(this)}>
           <P5Wrapper sketch={sketch} drink={this.state.drink}/>
+          {JSON.stringify(this.state.ingredients)}
         </div>
-        {JSON.stringify(this.state.ingredients)}
         <Menu changeDrink={this.changeDrink.bind(this)}/>
       </div>
     );
