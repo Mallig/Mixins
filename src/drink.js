@@ -1,10 +1,11 @@
 export default class Drink {
-    constructor(glassType, ingredients) {
+    constructor(glassType, ingredients, scale) {
         this.glassType = glassType;
         this.ingredients = ingredients;
         this.bowlCenterBase = null;
         this.bowlWidth = null;
         this.rimEdge = null;
+        this.scale = scale
     }
 
     glassDraw() {
@@ -34,10 +35,10 @@ export default class Drink {
             draw.push([
                 x +3, y -2,
                 x + this.bowlWidth -2, y-2, 
-                x + this.bowlWidth -2, y - (this.ingredients[key] * 8) -2, 
-                x +3, y - (this.ingredients[key] * 8) -2
+                x + this.bowlWidth -2, y - (this.ingredients[key] * (this.scale*8)) -2, 
+                x +3, y - (this.ingredients[key] * (this.scale*8)) -2
             ])
-            y -= this.ingredients[key]*8
+            y -= this.ingredients[key]*(this.scale*8)
         }
 
         return draw
@@ -61,7 +62,7 @@ export default class Drink {
             y1 = y4
             x2 = x3
             y2 = y3
-            y3 = y2 - this.ingredients[key]*8
+            y3 = y2 - this.ingredients[key]*this.scale*8
             x3 = (xRim + (yRim - y3)/(yRim - yBase) * (xBase - xRim))
             x4 = ((xRim - this.bowlWidth) - (yRim - y3)/(yRim - yBase) * (xBase - xRim))
             y4 = y3
@@ -71,11 +72,11 @@ export default class Drink {
         return draw
     }
 
-    drawCocktailGlass(canvasHeight = 200, canvasWidth = 200) {
-        let stemHeight = 45
-        let baseWidth = 50
-        let bowlWidth = 70
-        let bowlHeight = 50
+    drawCocktailGlass(canvasHeight = 600, canvasWidth = 600) {
+        let stemHeight = 50 * this.scale
+        let baseWidth = 50 * this.scale
+        let bowlWidth = 70 * this.scale
+        let bowlHeight = 45 * this.scale
 
         let x = canvasWidth/2 - baseWidth/2
         let y = canvasHeight/2 + (stemHeight + bowlHeight)/2
@@ -92,7 +93,10 @@ export default class Drink {
         return [base, stem, leftRim, rightRim]
     }
 
-    drawTumbler(bowlHeight=60, baseWidth=60, canvasWidth = 200, canvasHeight = 200) {
+    drawTumbler(bowlHeight=60, baseWidth=60, canvasWidth = 600, canvasHeight = 600) {
+        bowlHeight *= this.scale
+        baseWidth *= this.scale
+
         let x = canvasWidth/2 - baseWidth/2
         let y = canvasHeight/2 + bowlHeight/2
 

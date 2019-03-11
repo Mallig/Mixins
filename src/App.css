@@ -1,3 +1,43 @@
 .App {
+  min-height: 100vh;
+  min-width: 100%;
+  background-color: blue;
   text-align: center;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 2fr 3fr 1fr;
+  grid-template-areas: "menu canvas filter";
+  justify-content: center;
+  align-content: center;
+}
+
+.DrinkCanvas {
+  grid-area: canvas;
+  align-items: center;
+  justify-items: center;
+  background-color: rgb(255, 204, 0);
+  border: 1px solid red;
+}
+
+.Menu {
+  grid-area: menu;
+  border: 1px solid red;
+}
+
+.drinks {
+  display: flex;
+  flex-flow: column;
+  justify-items: flex-start;
+  align-items: flex-start;
+  border: 1px solid red;
+}
+
+.Menu button {
+  display: block;
+}
+
+.IngredientsFilter {
+  min-width: 50px;
+  grid-area: filter;
+  border: 1px solid red;
 }

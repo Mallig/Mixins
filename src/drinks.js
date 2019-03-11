@@ -29,5 +29,13 @@ export const drinks = [
             rum: 2.0*2,
             ginger_beer: 3.333*2
         }
+    },
+    {
+        name: "gin and tonic",
+        glassType: "tumbler",
+        ingredients: {
+            tonic: 3.0,
+            gin: 1.0,
+        }
     }
   ]

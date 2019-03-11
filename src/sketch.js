@@ -8,25 +8,25 @@ export default function sketch(p) {
     let topIngredientLevel
 
     p.setup = function () {
-        p.createCanvas(200, 200)
+        p.createCanvas(600, 600)
     }
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
         if (props.drink) {
             drink = props.drink
         }
+        console.log('hello')
     }
 
     p.draw = function () {
+        p.background(255, 204, 0)
+        
         if (drink) {
             glassDraw = drink.glassDraw()
             ingredientsDraw = drink.ingredientsDraw()
+            p.drawGlass()
+            p.drawIngredients()
         }
-
-        p.background(255, 204, 0)
-
-        p.drawGlass()
-        p.drawIngredients()
     }
 
     p.mousePressed = function () {
@@ -64,7 +64,7 @@ export default function sketch(p) {
             if (dragging && ingredient === Object.keys(drink.ingredients)[i]) {
                 p.fill('green')
                 if (topIngredientLevel > drink.rimEdge[1] && p.mouseY-offsetY > drink.rimEdge[1] && p.mouseY < ingredientsDraw[i][1]) {
-                    drink.ingredients[ingredient] += (ingredientsDraw[i][5] - p.mouseY)/8
+                    drink.ingredients[ingredient] += (ingredientsDraw[i][5] - p.mouseY)/(drink.scale*8)
                     topIngredientLevel = ingredientsDraw[ingredientsDraw.length-1][7]
                 }
             }
