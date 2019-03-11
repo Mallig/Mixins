@@ -1,4 +1,6 @@
 export let drink = null
+export let canvasWidth = 300
+export let scale
 export default function sketch(p) {
     let glassDraw = []
     let ingredientsDraw = []
@@ -6,16 +8,16 @@ export default function sketch(p) {
     let ingredient
     let offsetY
     let topIngredientLevel
+    let canvasHeight = canvasWidth
 
     p.setup = function () {
-        p.createCanvas(600, 600)
+        p.createCanvas(canvasWidth, canvasHeight)
     }
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
         if (props.drink) {
             drink = props.drink
         }
-        console.log('hello')
     }
 
     p.draw = function () {
@@ -26,6 +28,22 @@ export default function sketch(p) {
             ingredientsDraw = drink.ingredientsDraw()
             p.drawGlass()
             p.drawIngredients()
+        }
+    }
+
+    p.windowResized = function () {
+        if (p.windowWidth < 900) {
+            canvasWidth = 300
+            canvasHeight = 300
+            scale = 2
+            p.resizeCanvas(canvasWidth, canvasHeight)
+            // if (drink) { drink.scale = 2 }
+        } else if (p.windowWidth > 900) {
+            canvasWidth = 600
+            canvasHeight = 600
+            scale = 4
+            p.resizeCanvas(canvasWidth, canvasHeight)
+            // if (drink) { drink.scale = 4 }
         }
     }
 

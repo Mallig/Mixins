@@ -1,11 +1,12 @@
 export default class Drink {
-    constructor(glassType, ingredients, scale) {
+    constructor(glassType, ingredients, scale, canvasWidth) {
         this.glassType = glassType;
         this.ingredients = ingredients;
         this.bowlCenterBase = null;
         this.bowlWidth = null;
         this.rimEdge = null;
         this.scale = scale
+        this.canvasWidth = canvasWidth
     }
 
     glassDraw() {
@@ -72,7 +73,7 @@ export default class Drink {
         return draw
     }
 
-    drawCocktailGlass(canvasHeight = 600, canvasWidth = 600) {
+    drawCocktailGlass(canvasHeight = this.canvasWidth, canvasWidth = this.canvasWidth) {
         let stemHeight = 50 * this.scale
         let baseWidth = 50 * this.scale
         let bowlWidth = 70 * this.scale
@@ -93,7 +94,7 @@ export default class Drink {
         return [base, stem, leftRim, rightRim]
     }
 
-    drawTumbler(bowlHeight=60, baseWidth=60, canvasWidth = 600, canvasHeight = 600) {
+    drawTumbler(bowlHeight=60, baseWidth=60, canvasWidth = this.canvasWidth, canvasHeight = this.canvasWidth) {
         bowlHeight *= this.scale
         baseWidth *= this.scale
 

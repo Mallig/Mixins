@@ -4,7 +4,7 @@ import P5Wrapper from 'react-p5-wrapper';
 import sketch from './sketch'
 import Drink from './drink';
 import {Menu} from './Menu'
-import {drink} from './sketch'
+import {drink, canvasWidth} from './sketch'
 
 class App extends Component {
   constructor(props) {
@@ -13,12 +13,27 @@ class App extends Component {
       drink: drink,
       ingredients: null,
       t: null,
-      canvasScale: 4
+      canvasScale: 4,
+      canvasWidth: canvasWidth
     }
   }
 
+  componentDidMount() {
+    window.addEventListener("resize", this.updateCanvasDimensions.bind(this))
+    if (window.innerWidth > 900) {this.setState({canvasScale: 4})}
+    if (window.innerWidth < 900) {this.setState({canvasScale: 2})}
+  }
+
+  updateCanvasDimensions() {
+    this.setState({canvasWidth: canvasWidth})
+    if (window.innerWidth > 900) {this.setState({canvasScale: 4})}
+    if (window.innerWidth < 900) {this.setState({canvasScale: 2})}
+    let drinkReset = this.state.drink
+    if (this.state.drink) { this.setState({ drink: new Drink(drinkReset.glassType, drinkReset.ingredients, this.state.canvasScale, this.state.canvasWidth)}) }
+  }
+
   changeDrink(glassType, ingredients) {
-    let drink = new Drink(glassType, ingredients, this.state.canvasScale)
+    let drink = new Drink(glassType, ingredients, this.state.canvasScale, this.state.canvasWidth)
     this.setState({drink: drink, ingredients: drink.ingredients})
   }
 
@@ -31,7 +46,6 @@ class App extends Component {
       this.t = setTimeout(this.updateIngredients.bind(this), 1000)
       this.setState({ingredients: drink.ingredients})
     }
-    console.log('hello')
   }
 
   render() {
